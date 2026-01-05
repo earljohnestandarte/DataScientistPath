@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 # We use a Dictionary (key: value pairs) to build it
 data = {
     'Song Name': ['Song A', 'Song B', 'Song C', 'Song D'],
@@ -27,7 +28,7 @@ genre_counts = df.groupby('Genre').count()
 print(genre_counts)
 
 
-#Plotting using matplotlib
+#Plotting using matplotlib bar chart
 genres = genre_stats.index
 tempos = genre_stats['Tempo']
 
@@ -37,3 +38,20 @@ plt.xlabel('Music Genre')
 plt.ylabel('Average Tempo (BPM)')
 plt.title('Which Genre is Fastest?')
 plt.show()
+
+#Plotting using scatter plot
+plt.scatter(df['Tempo'], df['Energy'], color='red')
+
+plt.xlabel('Tempo')
+plt.ylabel('Energy')
+plt.title('Tempo vs Energy')
+plt.grid(True) # Adds a grid behind the dots
+plt.show()
+
+#plotting using seaborn
+sns.scatterplot(data=df, x='Tempo', y='Energy', hue='Genre', s=100)
+
+plt.title('Song Clusters by Genre')
+plt.grid(True)
+plt.show()
+
